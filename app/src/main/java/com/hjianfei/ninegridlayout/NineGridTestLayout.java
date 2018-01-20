@@ -1,14 +1,16 @@
 package com.hjianfei.ninegridlayout;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Toast;
 
+import com.hjianfei.ninegridlayout.image_zoom.ImageDetailActivity;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -73,6 +75,11 @@ public class NineGridTestLayout extends NineGridLayout {
 
     @Override
     protected void onClickImage(int i, String url, List<String> urlList) {
-        Toast.makeText(mContext, "点击了图片" + url, Toast.LENGTH_SHORT).show();
+        ArrayList<String> urls = new ArrayList<>();
+        urls.addAll(urlList);
+        Intent intent0 = new Intent(mContext, ImageDetailActivity.class);
+        intent0.putExtra("pos", i);
+        intent0.putStringArrayListExtra("picList", urls);
+        mContext.startActivity(intent0);
     }
 }
